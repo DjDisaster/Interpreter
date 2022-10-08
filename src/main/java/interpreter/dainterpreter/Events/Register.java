@@ -11,10 +11,9 @@ import java.util.HashMap;
 
 public class Register implements Listener{
     public static HashMap<String, Event> events = new HashMap<String, Event>();
-    public static void register(Event thisevent, String syntax) {
+    public static void register(Event thisevent, String syntax, ArrayList ray) {
         events.put(syntax, thisevent);
         Bukkit.broadcastMessage("Registered event " + thisevent.getEventName() + " with syntax " + syntax);
-        ArrayList ray = new ArrayList<String>();
         EventRegister.registerEvent(thisevent, syntax, ray);
     }
 
