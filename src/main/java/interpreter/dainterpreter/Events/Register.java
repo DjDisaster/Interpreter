@@ -8,13 +8,14 @@ import org.bukkit.event.Listener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// extends EventRegister
 
-public class Register implements Listener{
+public class Register extends EventRegister {
     public static HashMap<String, Event> events = new HashMap<String, Event>();
     public static void register(Event thisevent, String syntax, ArrayList ray) {
         events.put(syntax, thisevent);
         Bukkit.broadcastMessage("Registered event " + thisevent.getEventName() + " with syntax " + syntax);
-        EventRegister.registerEvent(thisevent, syntax, ray);
+        //EventRegister.registerEvent(thisevent, syntax, ray);
     }
 
     public static void LoadEvents() {

@@ -10,8 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Parser {
+    public static HashMap<String,List<List<String>>> Parsed = new HashMap<String, List<List<String>>>();
     public static void Parse(String file) throws IOException {
         String[] result = ReadFile.readFile(file);
         Bukkit.broadcastMessage("Parsing " + file);
@@ -25,8 +28,16 @@ public class Parser {
             if (indentation == 0) {
                 // if event != ""
                 if (!event.equals("")) {
-                    CheckEvent.checkEvent(event, lines);
+                    if (Parsed.get(event) == null) {
+                        Parsed.put(event, lines);
+                    } else {
+                        List<List<String>> newlines = Parsed.get(event);
+                        newlines.addAll(lines);
+                        Parsed.put(event, newlines);
+                    }
                     event = "";
+                    lines = new ArrayList();
+
                 }
                 event = result[i];
                 Bukkit.broadcastMessage("Event: " + event);
@@ -34,6 +45,13 @@ public class Parser {
                 lines.add(result[i]);
             }
         }
-        CheckEvent.checkEvent(event, lines);
+        if (Parsed.get(event) == null) {
+            Parsed.put(event, lines);
+        } else {
+            List<List<String>> newlines = Parsed.get(event);
+            newlines.addAll(lines);
+            Parsed.put(event, newlines);
+        }
+        Bukkit.broadcastMessage("Parser" + Parser.Parsed.toString());
     }
 }

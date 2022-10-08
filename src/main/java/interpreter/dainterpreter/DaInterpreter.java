@@ -1,5 +1,6 @@
 package interpreter.dainterpreter;
 
+import interpreter.dainterpreter.Events.BasicEvents;
 import interpreter.dainterpreter.Events.Register;
 import interpreter.dainterpreter.Main.EventRegister;
 import interpreter.dainterpreter.Main.GetValidFiles;
@@ -21,7 +22,7 @@ public final class DaInterpreter extends JavaPlugin {
         Register.LoadEvents();
         // register event in EventRegister.java
         getServer().getPluginManager().registerEvents(new EventRegister(), this);
-
+        getServer().getPluginManager().registerEvents(new BasicEvents(), this);
 
         String[] files = GetValidFiles.getValidFiles();
 
