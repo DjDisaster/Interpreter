@@ -2,6 +2,7 @@ package interpreter.dainterpreter.Main;
 
 import interpreter.dainterpreter.Events.Register;
 import org.bukkit.Bukkit;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,14 +16,13 @@ public class Parser {
         for (int i = 0; i < result.length; i++) {
             int indentation = result[i].length() - result[i].replace("\t", "").length();
             result[i] = result[i].replace("\t", "");
-
-            Boolean error = Register.compareSyntax(result[i]);
-            // if error = false
-            if (!error) {
-                Bukkit.broadcastMessage("Error on line " + i + " in " + file);
-                Bukkit.broadcastMessage("Syntax error: " + result[i]);
+            // if indentation = 0 it is an event
+            String event = ""
+            if (indentation == 0) {
+                if event
+                event
             }
-
+            //Boolean error = Register.compareSyntax(result[i]);
         }
     }
 }

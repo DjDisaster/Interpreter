@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -13,7 +14,8 @@ public class Register implements Listener{
     public static void register(Event thisevent, String syntax) {
         events.put(syntax, thisevent);
         Bukkit.broadcastMessage("Registered event " + thisevent.getEventName() + " with syntax " + syntax);
-        EventRegister.registerEvent(thisevent, syntax);
+        ArrayList ray = new ArrayList<String>();
+        EventRegister.registerEvent(thisevent, syntax, ray);
     }
 
     public static void LoadEvents() {
