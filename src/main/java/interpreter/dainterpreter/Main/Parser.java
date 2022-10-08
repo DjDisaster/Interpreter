@@ -14,9 +14,8 @@ public class Parser {
         for (int i = 0; i < result.length; i++) {
             int indentation = result[i].length() - result[i].replace("\t", "").length();
             result[i] = result[i].replace("\t", "");
-
             Boolean error = Register.compareSyntax(result[i]);
-            // if error = false
+
             if (!error) {
                 Bukkit.broadcastMessage("Error on line " + i + " in " + file);
                 Bukkit.broadcastMessage("Syntax error: " + result[i]);

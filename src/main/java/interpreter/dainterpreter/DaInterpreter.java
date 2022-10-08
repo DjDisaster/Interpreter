@@ -1,12 +1,14 @@
 package interpreter.dainterpreter;
 
+import interpreter.dainterpreter.Events.Register;
+import interpreter.dainterpreter.Main.EventRegister;
 import interpreter.dainterpreter.Main.GetValidFiles;
 import interpreter.dainterpreter.Main.Parser;
 import org.bukkit.Bukkit;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.Arrays;
 
 public final class DaInterpreter extends JavaPlugin {
@@ -15,9 +17,17 @@ public final class DaInterpreter extends JavaPlugin {
     public String Savetype = "";
     @Override
     public void onEnable() {
+        // register event in TestEvent.java
+        Register.LoadEvents();
+        // register event in EventRegister.java
+        getServer().getPluginManager().registerEvents(new EventRegister(), this);
+
 
         String[] files = GetValidFiles.getValidFiles();
-        // loop files and user parser method
+
+
+        //Register.register(new PlayerJoinEvent(null, "yo"), "player join");
+
         for (int i = 0; i < files.length; i++) {
             try {
                 Parser.Parse(files[i]);
@@ -27,7 +37,7 @@ public final class DaInterpreter extends JavaPlugin {
         }
         Bukkit.broadcastMessage("Files: " + Arrays.toString(files));
 
-        // log
+
         getLogger().info("DaInterpreter has been enabled!");
         // make folder
         getDataFolder().mkdirs();

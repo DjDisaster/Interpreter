@@ -1,15 +1,29 @@
 package interpreter.dainterpreter.Events;
 
-import org.bukkit.event.Event;
+import interpreter.dainterpreter.DaInterpreter;
+import interpreter.dainterpreter.Main.EventRegister;
+import jdk.javadoc.internal.tool.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.event.*;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.EventExecutor;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.HashMap;
 
-public class Register {
+import static jdk.tools.jlink.internal.PluginRepository.getPlugin;
+import static org.bukkit.Bukkit.getServer;
+public class Register implements Listener{
     public static HashMap<String, Event> events = new HashMap<String, Event>();
-    public static void register(Event event, String syntax) {
-        events.put(syntax, event);
+    public static void register(Event thisevent, String syntax) {
+        events.put(syntax, thisevent);
+        Bukkit.broadcastMessage("Registered event " + thisevent.getEventName() + " with syntax " + syntax);
+        // check when thisevent is called and broadcast the syntax
+        EventRegister.registerEvent(thisevent, syntax);
+
     }
+
     public static void LoadEvents() {
         JoinEvent.joinEvent();
     }
