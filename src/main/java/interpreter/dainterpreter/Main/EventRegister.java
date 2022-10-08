@@ -25,26 +25,35 @@ public class EventRegister implements Listener {
     }
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        // check if click type = left click
         String syntax = "";
-        if (event.getAction() == Action.LEFT_CLICK_AIR) {
-             syntax = "On Left Click:";
-        } else if (event.getAction() == Action.RIGHT_CLICK_AIR) {
-             syntax = "On Right Click:";
+        if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
+            syntax = "On Left Click:";
+        } else if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            syntax = "On Right Click:";
         }
-        // get value of syntax from Parser.Parsed but ignore case
-        // loop keys of Parser.Parsed
         ArrayList thiskey = new ArrayList();
         for (String key : Parser.Parsed.keySet()) {
             if (key.equalsIgnoreCase(syntax)) {
                 thiskey = (ArrayList) Parser.Parsed.get(key);
-                }
-            }
-        // loop through thiskey
-        for (int i = 0; i < thiskey.size(); i++) {
-            // log thiskey.get(i)
-            Bukkit.broadcastMessage(thiskey.get(i).toString());
             }
         }
+        // check if thiskey is set
+        Bukkit.broadcastMessage("thiskey: " + thiskey);
+        if (thiskey != null) {
+            HashMap<String, String> localvar = new HashMap<String, String>();
+            localvar.put("Player", event.getPlayer().getName());
+
+            if (event.getClickedBlock() != null) {
+                localvar.put("Block", event.getClickedBlock().getType().toString());
+            }
+            localvar.put("Action", event.getAction().toString());
+
+            Bukkit.broadcastMessage("Parser" + Parser.Parsed.toString());
+            for (int i = 0; i < thiskey.size(); i++) {
+                Bukkit.broadcastMessage(thiskey.get(i).toString());
+                Bukkit.broadcastMessage("LocalVar" + localvar.toString());
+            }
+        }
+    }
 
     }
