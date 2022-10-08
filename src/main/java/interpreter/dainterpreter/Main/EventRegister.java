@@ -13,7 +13,8 @@ public class EventRegister implements Listener {
             @Override
             public void execute(Listener listener, Event event) throws EventException {
                 Bukkit.broadcastMessage("Event " + thisevent.getEventName() + " called with syntax " + syntax);
-                // get player
+                PlayerJoinEvent e = (PlayerJoinEvent) event;
+                Player player = e.getPlayer();
 
             }
         }, DaInterpreter.getPlugin(DaInterpreter.class));
