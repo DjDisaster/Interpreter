@@ -17,8 +17,12 @@ public class EventRegister implements Listener {
             public void execute(Listener listener, Event event) throws EventException {
                 HashMap<String, String> localvar = new HashMap<String, String>();
                 Bukkit.broadcastMessage("Event " + thisevent.getEventName() + " called with syntax " + syntax);
-                PlayerJoinEvent e = (PlayerJoinEvent) event;
-                Player player = e.getPlayer();
+                thisevent.getEventName();
+
+
+
+
+
                 Bukkit.broadcastMessage("Ray: " + ray.toString());
             }
         }, DaInterpreter.getPlugin(DaInterpreter.class));

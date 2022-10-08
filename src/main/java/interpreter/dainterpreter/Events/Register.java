@@ -18,7 +18,7 @@ public class Register implements Listener{
     }
 
     public static void LoadEvents() {
-        JoinEvent.joinEvent();
+        BasicEvents.joinEvent();
     }
 
     public static Boolean compareSyntax(String s) {
