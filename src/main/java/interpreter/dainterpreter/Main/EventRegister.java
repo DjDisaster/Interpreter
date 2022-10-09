@@ -47,10 +47,10 @@ public class EventRegister implements Listener {
                 localvar.put("Block", event.getClickedBlock().getType().toString());
             }
             localvar.put("Action", event.getAction().toString());
-
             Bukkit.broadcastMessage("Parser" + Parser.Parsed.toString());
             for (int i = 0; i < thiskey.size(); i++) {
-                Bukkit.broadcastMessage(thiskey.get(i).toString());
+                Bukkit.broadcastMessage("THISKEY " + thiskey.get(i).toString());
+                Execute.Execute(thiskey.get(i).toString(), localvar);
                 Bukkit.broadcastMessage("LocalVar" + localvar.toString());
             }
         }

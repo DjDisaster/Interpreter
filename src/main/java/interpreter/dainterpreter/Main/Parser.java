@@ -8,6 +8,7 @@ import org.checkerframework.checker.units.qual.A;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,6 +21,8 @@ public class Parser {
         Bukkit.broadcastMessage("Parsing " + file);
         ArrayList lines = new ArrayList();
         String event = "";
+        // new arraylist named input
+        ArrayList input = new ArrayList();
         for (int i = 0; i < result.length; i++) {
             int indentation = result[i].length() - result[i].replace("\t", "").length();
             result[i] = result[i].replace("\t", "");
