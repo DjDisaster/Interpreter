@@ -17,7 +17,7 @@ import java.util.List;
 public class Parser {
     public static HashMap<String,List<List<String>>> Parsed = new HashMap<String, List<List<String>>>();
     public static void Parse(String file) throws IOException {
-        String[] result = ReadFile.readFile(file);
+        String[] result = FileUtils.readFile(file);
         Bukkit.broadcastMessage("Parsing " + file);
         ArrayList lines = new ArrayList();
         String event = "";

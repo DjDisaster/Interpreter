@@ -1,9 +1,7 @@
 package interpreter.dainterpreter.Events;
 
-import interpreter.dainterpreter.Main.EventRegister;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
-import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
 import java.util.HashMap;

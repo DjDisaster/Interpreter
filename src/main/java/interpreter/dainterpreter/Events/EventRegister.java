@@ -1,6 +1,8 @@
-package interpreter.dainterpreter.Main;
+package interpreter.dainterpreter.Events;
 
 import interpreter.dainterpreter.DaInterpreter;
+import interpreter.dainterpreter.Main.Execute;
+import interpreter.dainterpreter.Main.Parser;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
@@ -19,8 +21,8 @@ public class EventRegister implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         String syntax = "On Join:";
-        HashMap<String, String> localvar = new HashMap<String, String>();
-        Player player = event.getPlayer();
+        HashMap<String, Object> localvar = new HashMap<String, Object>();
+        localvar.put("player", event.getPlayer().getName());
         Bukkit.broadcastMessage("Parser" + Parser.Parsed.toString());
     }
     @EventHandler

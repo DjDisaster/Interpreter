@@ -1,12 +1,12 @@
 package interpreter.dainterpreter;
 
+import interpreter.dainterpreter.Effects.BasicEffects;
 import interpreter.dainterpreter.Events.BasicEvents;
 import interpreter.dainterpreter.Events.Register;
-import interpreter.dainterpreter.Main.EventRegister;
-import interpreter.dainterpreter.Main.GetValidFiles;
+import interpreter.dainterpreter.Events.EventRegister;
+import interpreter.dainterpreter.Main.FileUtils;
 import interpreter.dainterpreter.Main.Parser;
 import org.bukkit.Bukkit;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
@@ -24,9 +24,9 @@ public final class DaInterpreter extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EventRegister(), this);
         getServer().getPluginManager().registerEvents(new BasicEvents(), this);
 
-        String[] files = GetValidFiles.getValidFiles();
+        String[] files = FileUtils.getValidFiles();
 
-
+        BasicEffects.AddSyntax();
         //Register.register(new PlayerJoinEvent(null, "yo"), "player join");
 
         for (int i = 0; i < files.length; i++) {
